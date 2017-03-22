@@ -100,6 +100,43 @@ Token Token_stream::get(){
 //Initialising a token stream
 Token_stream ts;
 
+	//-------------------------------------------------
+	// initialise the expression() so that primary() can use it
+double expression();
+double primary();
+double term();
+/*
+ Grammar:
+ 
+ Expression:
+ Term
+ Expression '+' Term
+ Expression '-' Term
+ 
+ Term:
+ Primary
+ Term '*' Primary
+ Term '/' Primary
+ Term '%' Primary
+ 
+ Primary:
+ Number
+ '{' Expression '}
+ '(' Expression ')'
+ 
+ Number:
+ floating-point literal
+ 
+ */
+
+/*
+ Grammar functions used by the calculator:
+ 1. expression() is used to handle addition & subtraction
+ 2. term() is used to handle multiplication, division & modulo
+ 3. primary() is used to handle numbers, parentheses and curly braces
+ */
+
+
 int main() {
 	
     return 0;
