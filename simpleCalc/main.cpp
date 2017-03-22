@@ -45,6 +45,19 @@ private:
 	Token buffer;
 	
 };
+
+//------------------------------------------------
+//1st member function of Token_stream - putback()
+/*
+ 1. Takes argument, token t and puts it back into the stream
+ 2. Flag(full) is switched to true if a token is in the buffer
+ */
+
+void Token_stream::putback(Token t){
+	if(full)error("putback() into a full buffer!");
+	buffer = t;
+	full = true;
+}
 	//-------------------------------------------------
 	//2nd member function of Token_stream - get()
 	/*
