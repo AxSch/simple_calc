@@ -14,6 +14,19 @@
 
 #include "std_lib_facilities.h"
 
+/*
+ Classes used
+ */
+	//Token declaration - read sequence of characters
+
+class Token{
+	
+public:
+	char type_token;
+	double value_token;
+};
+	//-------------------------------------------------
+
 int main() {
 	
     return 0;
