@@ -46,6 +46,59 @@ private:
 	
 };
 	//-------------------------------------------------
+	//2nd member function of Token_stream - get()
+	/*
+	 1. checks if buffer is full
+	 2. read token and
+	 */
+Token Token_stream::get(){
+	if(full){
+		full = false;
+		return buffer;
+	}
+	
+	char ch;
+	cin >> ch;
+			
+			switch(ch){
+				case 'q':
+					exit(0);
+				case ';':
+				case '(':
+				case ')':
+				case '+':
+				case '-':
+				case '/':
+				case '*':
+				case '%':
+					return Token{ch};
+					
+				case '.':
+				case '0':
+				case '1':
+				case '2':
+				case '3':
+				case '4':
+				case '5':
+				case '6':
+				case '7':
+				case '8':
+				case '9':
+				{
+					cin.putback(ch);
+					double val;
+					cin >> val;
+					return Token{'8', val};
+				}
+				default:
+					error("Bad token");
+			}
+			return Token();
+}
+//----------------------------------------------
+	//-------------------------------------------------
+//Initialising a token stream
+Token_stream ts;
 
 int main() {
 	
