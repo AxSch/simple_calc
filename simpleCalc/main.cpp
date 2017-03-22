@@ -136,6 +136,81 @@ double term();
  3. primary() is used to handle numbers, parentheses and curly braces
  */
 
+	//Primary() function definition
+
+double primary(){
+	Token t = ts.get();
+	switch(t.type_token){
+			/*case '{':
+			 {
+			 double d = expression();
+			 t = ts.get();
+			 if(t.type_token != '}')error("Expected '}'");
+			 return d;
+			 }*/
+		case '(':
+		{
+		double d = expression();
+		t = ts.get();
+		if(t.type_token != ')')error("Expected ')'");
+		return d;
+		}
+		case '8':
+				//cout<<"number evaluated ok"<<endl;
+				//return t.value_token;
+			return t.value_token;
+			/*
+			 default:
+			 //cout <<" back to the start!"<<endl;
+			 error("primary expected"); */
+	}
+	return 0;
+}
+
+	//-------------------------------------------------
+
+	//Term() function definition
+double term() {
+		//error("term called");
+	double user_expression = primary();
+	Token t = ts.get();
+	while(true){
+		switch (t.type_token)
+		{
+			case '*':
+			user_expression *= primary();
+			t = ts.get();
+			break;
+			
+			case '/':
+			{
+			double divis_expression = primary();
+			if(divis_expression == 0) error("Division By Zero");
+			user_expression /= divis_expression;
+			t = ts.get();
+			break;
+			}
+			case '%':
+			{
+			double rounding = round(primary());
+			int mod_num = (int)rounding;
+			cout << mod_num;
+			if(mod_num == 0)error("Cannot modulo by Zero");
+			int user_Expr_Int = (int)user_expression;
+			user_Expr_Int %= mod_num;
+			user_expression = user_Expr_Int;
+			t = ts.get();
+			break;
+			}
+			default:
+				//cout<<"putting back"<<endl;
+			ts.putback(t);
+			return user_expression;
+		}
+	}
+}
+//-------------------------------------------------
+
 
 int main() {
 	
