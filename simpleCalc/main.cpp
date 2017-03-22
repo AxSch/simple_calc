@@ -211,6 +211,40 @@ double term() {
 }
 //-------------------------------------------------
 
+	//Expression() function definition
+double expression() {
+	/*
+	 1. Call term()
+	 2. Retrieve token and evaluate it
+	 3. Return the result
+	 */
+	
+	double user_expression = term();
+	Token t = ts.get();
+	while(true){
+		switch(t.type_token){
+				
+			case '+': //Checks for a token with type '+'
+					  //cout<<"found a +"<<endl;
+				user_expression += term(); //Evaulates addition
+				t = ts.get(); //Get the next token from the stream
+				break;
+				
+			case '-':
+				user_expression -= term();//Same as above but for subtraction
+				t = ts.get();
+				break;
+				
+			default:
+					//cout<<" in default path "<<endl;
+				ts.putback(t); //Once there are no more tokens matching the case above, the token t is putback into the stream
+				return user_expression; //Return the result(Hopefully the correct one)
+		}
+	}
+	
+}
+
+
 
 int main() {
 	
