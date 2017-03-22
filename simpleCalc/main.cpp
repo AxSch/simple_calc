@@ -245,8 +245,29 @@ double expression() {
 }
 
 
+	//------------------------------------------------
 
 int main() {
+	try{
+		cout << "Hello, and welcome to my simple calculator program!\n"
+		<< "Here are the instructions for using the calculator:\n"
+		<< "Enter an expression that you want to evaluate followed by a semi-colon, ';' to finish the expression\n"
+		<< "To terminate the program, use 'q' for 'QUIT'\n";
+		while(cin){
+			cout << "= " << expression()<<endl;
+		}
+		
+	}
+	catch(exception& e){
+		cerr<<e.what()<<'\n';
+		keep_window_open();
+		return 1;
+	}
+	catch(...){
+		cerr<<"exception has occurred"<<endl;
+		keep_window_open();
+		return 2;
+	}
 	
-    return 0;
+	return 0;
 }
