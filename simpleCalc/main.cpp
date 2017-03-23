@@ -176,6 +176,12 @@ double primary(){
 			 default:
 			 //cout <<" back to the start!"<<endl;
 			 error("primary expected"); */
+		case '-':
+			return - primary();
+		
+		case '+':
+			return primary();
+			
 	}
 	return 0;
 }
