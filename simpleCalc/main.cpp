@@ -13,6 +13,7 @@
 
 
 #include "std_lib_facilities.h"
+#include <math.h>
 
 /*
  Classes used Token & Token_Stream
@@ -83,6 +84,7 @@ Token Token_stream::get(){
 				case '-':
 				case '/':
 				case '*':
+				case '%':
 						//case '%':
 					return Token{ch};
 					
@@ -209,8 +211,8 @@ double term() {
 			t = ts.get();
 			break;
 			}
-			/*case '%':
-			{
+			case '%':
+			/*{
 			double rounding = round(primary());
 			int mod_num = (int)rounding;
 			cout << mod_num;
@@ -221,7 +223,15 @@ double term() {
 			t = ts.get();
 			break;
 			}*/
-			default:
+			{
+				double d = primary();
+				if(d == 0)error("%: divide by zero");
+				user_expression = std::fmod(user_expression,d);
+				t = ts.get();
+				break;
+			}
+			
+		default:
 				//cout<<"putting back"<<endl;
 			ts.putback(t);
 			return user_expression;
