@@ -14,12 +14,16 @@
 
 #include "std_lib_facilities.h"
 #include <math.h>
-
+const char number = '8';
+const char quit = 'q';
+const char print = ';';
+const string prompt = ">";
+const string result = "=";
 /*
  Classes used Token & Token_Stream
  */
 	//Token declaration - read sequence of characters
-const char number = '8';
+
 class Token{
 	
 public:
@@ -75,9 +79,9 @@ Token Token_stream::get(){
 	cin >> ch;
 			
 			switch(ch){
-				case 'q':
+				case quit :
 					exit(0);
-				case ';':
+				case print:
 				case '(':
 				case ')':
 				case '+':
@@ -282,19 +286,17 @@ int main() {
 		<< "Here are the instructions for using the calculator:\n"
 		<< "Enter an expression that you want to evaluate followed by a semi-colon, ';' to finish the expression\n"
 		<< "To terminate the program, use 'q' for 'QUIT'\n";
-		double result = 0;
 		while(cin){
-			cout << ">";
+			cout << prompt;
 			Token t  = ts.get();
-			if(t.type_token == 'q')break;
-			if(t.type_token ==';'){
-				cout <<"="<< result << endl;
+			while(t.type_token == print) t=ts.get();
+			if(t.type_token == quit){
+				keep_window_open();
+				return 0;
 			}
-			else{
-				ts.putback(t);
-				
-			}
-		result = expression();
+			
+		ts.putback(t);
+		cout << result <<expression() <<'\n';
 		}
 		
 	}
