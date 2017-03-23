@@ -165,7 +165,7 @@ double primary(){
 		{
 		double d = expression();
 		t = ts.get();
-		if(t.type_token != ')')error("Expected ')'");
+			//if(t.type_token != ')')error("Expected ')'");
 		return d;
 		}
 		case '8':
