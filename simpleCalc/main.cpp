@@ -266,8 +266,19 @@ int main() {
 		<< "Here are the instructions for using the calculator:\n"
 		<< "Enter an expression that you want to evaluate followed by a semi-colon, ';' to finish the expression\n"
 		<< "To terminate the program, use 'q' for 'QUIT'\n";
+		double result = 0;
 		while(cin){
-			cout << "= " << expression()<<endl;
+			cout << ">";
+			Token t  = ts.get();
+			if(t.type_token == 'q')break;
+			if(t.type_token ==';'){
+				cout <<"="<< result << endl;
+			}
+			else{
+				ts.putback(t);
+				
+			}
+		result = expression();
 		}
 		
 	}
