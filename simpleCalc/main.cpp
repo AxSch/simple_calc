@@ -83,7 +83,7 @@ Token Token_stream::get(){
 				case '-':
 				case '/':
 				case '*':
-				case '%':
+						//case '%':
 					return Token{ch};
 					
 				case '.':
@@ -203,7 +203,7 @@ double term() {
 			t = ts.get();
 			break;
 			}
-			case '%':
+			/*case '%':
 			{
 			double rounding = round(primary());
 			int mod_num = (int)rounding;
@@ -214,7 +214,7 @@ double term() {
 			user_expression = user_Expr_Int;
 			t = ts.get();
 			break;
-			}
+			}*/
 			default:
 				//cout<<"putting back"<<endl;
 			ts.putback(t);
