@@ -5,6 +5,7 @@ The program is written using a set of grammar rules:
 Expression --> Term --> Primary
 
 Grammar:
+
     Expression:
         Term
         Expression '+' Term
