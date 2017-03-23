@@ -19,7 +19,7 @@
  Classes used Token & Token_Stream
  */
 	//Token declaration - read sequence of characters
-
+const char number = '8';
 class Token{
 	
 public:
@@ -103,7 +103,7 @@ Token Token_stream::get(){
 					cin.putback(ch);
 					double val;
 					cin >> val;
-					return Token{'8', val};
+					return Token{number, val};
 				}
 				default:
 					error("Bad token");
@@ -170,7 +170,7 @@ double primary(){
 			//if(t.type_token != ')')error("Expected ')'");
 		return d;
 		}
-		case '8':
+		case number:
 				//cout<<"number evaluated ok"<<endl;
 				//return t.value_token;
 			return t.value_token;
